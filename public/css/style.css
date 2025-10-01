@@ -1,0 +1,585 @@
+:root {
+    --primary-color: #3d5a80;
+    --bs-btn-bg:#3d5a80;
+    --secondary-color: #ee6c4d;
+    --light-blue: #98c1d9;
+    --light-color: #e0fbfc;
+    --dark-color: #293241;
+    --max-width: 1100px;
+    --min-width: 600px;
+    --success:#28A745;
+}
+
+body {
+    color:var(--dark-color);
+    background-color: var(--light-color);
+    font-size: 1.2rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-primary{
+    
+    --bs-btn-bg: #3d5a80 !important;
+}
+
+.alert.alert-danger {
+    margin: 1em auto; 
+}
+
+nav.navbar{
+    padding: 0.5em 1em;
+}
+
+input#name.form-control{
+    width: auto;
+    margin:auto 1em;
+}
+
+input.form-control.name{
+    width:auto;
+    margin-right: 1em;
+}
+
+form{
+    display: flex;
+    flex-direction: row;
+}
+
+#reg-form{
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 1em auto;
+    justify-content: center;
+}
+
+.name-label{
+    margin-right: 1rem;
+}
+
+/*errors and success messages*/
+#hidemsg, .alert-danger{
+    background-color: var(--light-color);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin: 0.5rem auto;
+    box-shadow: -2px 9px 12px 0px rgba(152, 193, 217,0.29),9px -3px 10px -4px rgba(238, 108, 77,0.25);
+    transition: box-shadow 0.3s ease-in-out;
+    max-width: 30em;
+}
+.alert-success  {
+    border: 1px solid var(--success);
+    color:var(--success);
+}
+
+.alert-danger  {
+    border: 1px solid var(--secondary-color);
+    color:var(--secondary-color);
+}
+
+.text-danger{
+    color: var(--secondary-color);
+}
+
+.errors ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/*
+    MOBILE-FIRST STYLES (Default for all screens)
+*/
+#stick {
+    position: sticky;
+    top: 0;
+}
+
+.navbar {
+    
+    position: sticky;
+    top: 0;
+    width: auto;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+}
+
+.nav-links {
+    /* Use visibility and transform instead of display: none */
+    visibility: hidden;
+    flex-direction: column;
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: transform 0.5s ease-in-out, visibility 0s 0.5s;
+    transform: translateY(-100%);
+    overflow: hidden;
+    margin-top: 0.6em;
+}
+
+.nav-links.active {
+    visibility: visible;
+    transform: translateY(0);
+    transition: transform 0.5s ease-in-out;
+    /* This is crucial to prevent the underline from being clipped */
+    overflow: visible;
+}
+    
+.nav-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+
+
+/* The rest of the CSS for the waterfall effect remains the same */
+.nav-links ul li {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+    
+.nav-links.active ul li {
+    opacity: 1;
+    transform: translateY(0);
+}
+    
+.nav-links.active ul li:nth-child(1) {
+    transition-delay: 0.1s;
+}
+    
+.nav-links.active ul li:nth-child(2) {
+    transition-delay: 0.2s;
+}
+    
+.nav-links.active ul li:nth-child(3) {
+    transition-delay: 0.3s;
+}
+    
+.nav-links.active ul li:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.nav-links ul li a {
+    color: var(--light-color);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+    transition: all 0.2s ease;
+    /* This ensures the pseudo-element is correctly contained */
+    display: inline-block;
+}
+
+.nav-links ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: .2rem;
+    background-color: var(--light-color);
+    transition: width 0.2s ease;
+}
+
+.nav-links ul li a:hover::after {
+    width: 100%;
+}
+
+/* Add this to create the same effect for touch and keyboard users */
+.nav-links ul li a:focus::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: block;
+    cursor: pointer;
+}
+
+.hamburger .line {
+    width: 25px;
+    height: 3px;
+    background-color: var(--light-color);
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+/* Hamburger animation styles */
+.hamburger.active .line:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active .line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+}
+
+    /* Hover effects for links */
+.nav-links ul li a {
+    color: var(--light-color);
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+    transition: all 0.2s ease;
+}
+
+.nav-links ul li a::after {
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 50%; /* Start from the horizontal center */
+   transform: translateX(-50%); /* Adjust to truly center */
+   width: 0; /* Initial width is zero */
+   height: .2rem;
+   background-color: var(--light-color); /* Your accent color */
+   transition: width 0.2s ease; /* Animate the width */
+}
+
+.nav-links ul li a:hover::after {
+    width: 100%; /* Expand to full width on hover */
+}
+
+/*SVG Icon*/
+
+.navbar a svg {
+    width: 3em;
+    height: auto;
+    margin-top: -1em;
+    margin-bottom: -1em;
+
+ 
+}
+
+/*Search bar*/
+.search {
+  /* Aligns and centers the items horizontally and vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Adds space around the search bar */
+  padding: 0px;
+  position: relative;
+}
+
+.search form {
+  /* Ensures the form takes up the full width of its container on smaller screens */
+  width: auto;
+  max-width: 600px; /* Limits the max width on larger screens */
+  display: flex; /* Makes the form-inline a flex container */
+  position: relative; /* Needed for positioning the search icon later if you add one */
+    
+}
+
+.navbar button{
+    border-radius: 0 2em 2em 0;
+    border: none;
+    padding-right: 1em;
+    background-color: var(--light-blue);
+    color: var(--dark-color);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    
+}
+
+.navbar button:hover,
+.navbar button:focus {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+    box-shadow: 4px 4px 6px 0px rgba(0,0,0,0.29),9px 1px 19px 0px rgba(0,0,0,0.25);
+    
+}
+
+/* Styles the input field */
+.search .form-control {
+  flex-grow: 1; /* Allows the input field to take up available space */
+  padding:  0 0 0 1em;
+  border-radius: 2em 0 0 2em; /* Creates the rounded, pill-like shape */
+  border: 1px solid #dfe1e5;
+  box-shadow: none; /* Removes any default box shadow from Bootstrap */
+  font-size: 16px;
+  transition: box-shadow 0.3s; /* Adds a smooth transition for the shadow */
+  margin-top: 0.5em;
+  height: 2.25em;
+}
+
+/* Adds a shadow when the input is focused or hovered over */
+.search .form-control:focus,
+.search .form-control:hover {
+  outline: none; /* Removes the default focus outline */
+  box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+  border-color: transparent; /* Removes the border to rely on the shadow */
+}
+
+/*Book items*/
+list-group {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+    justify-content: space-evenly;
+    align-items: right;
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+}
+
+
+.list-group-item {
+    background-color: #ebffff;
+    border: 1px solid var(--light-blue);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    box-shadow: -2px 9px 12px 0px rgba(152, 193, 217,0.29),9px -3px 10px -4px rgba(238, 108, 77,0.25);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+#right-side{
+    display: flex;
+    flex-direction: row;
+    align-items: right;
+    justify-content: right;
+    gap: 1rem;
+}
+
+/*
+    MEDIA QUERY FOR LARGER SCREENS (Overrides mobile styles)
+*/
+@media (min-width: 769px) {
+    .nav-links {
+        visibility: visible;
+        position: static;
+        transform: none;
+        background-color: transparent;
+        overflow: visible;
+        width: auto;
+        display: flex;
+    }
+
+    .nav-links ul {
+        flex-direction: row;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    .nav-links ul li {
+        opacity: 1;
+        transform: translateY(0);
+        transition: none;
+    }
+    
+    .hamburger {
+        display: none;
+    }
+
+    .search .form-control {
+        padding: 0rem 1rem;
+        margin-top: 0em;
+        height: 2.25em;
+    }
+
+
+}
+
+/*Cart*/
+.cart-icon-container {
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.cart-icon-container::before,
+.cart-icon-container::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0.2rem;
+    background-color: var(--light-color);
+    transition: width 0.3s;
+}
+
+.cart-icon-container::before {
+    top: 0;
+    left: 0;
+}
+
+.cart-icon-container::after {
+    bottom: 0;
+    right: 0;
+}
+
+.cart-icon-container:hover::before,
+.cart-icon-container:hover::after {
+    width: 100%;
+}
+
+.cart-icon-container .nav-link::before,
+.cart-icon-container .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 0;
+    background-color: var(--light-color);
+    transition: height 0.3s;
+}
+
+.cart-icon-container .nav-link::before {
+    top: 0;
+    right: 0;
+}
+
+.cart-icon-container .nav-link::after {
+    bottom: 0;
+    left: 0;
+}
+
+.cart-icon-container:hover .nav-link::before,
+.cart-icon-container:hover .nav-link::after {
+    height: 100%;
+}
+
+/* Custom Carousel Styles for multiple items */
+.carousel-multi .carousel-inner {
+    white-space: nowrap;
+}
+
+.carousel-multi .carousel-item {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(100% / 3);
+}
+
+/* On smaller screens, show one item at a time */
+@media (max-width: 768px) {
+    .carousel-multi .carousel-item {
+        width: 100%;
+    }
+}
+
+/*For Carousal*/
+/* Hide the scrollbar but allow scrolling functionality */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Define the carousel item animation */
+.slide-transition {
+    transition: transform 0.5s ease-in-out;
+}
+
+#search-suggestions {
+    position: absolute;
+    top: 98%;
+    left: 15px;
+    right: 0;
+    z-index: 100;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-top: none;
+    width: 220px;
+}
+
+#search-suggestions .list-group {
+    margin-bottom: 0;
+}
+
+#search-suggestions .list-group-item {
+    border: none;
+    box-shadow: none;
+    background-color: white;
+    font-size: 0.8em;
+    padding: 0px;
+}
+
+#search-suggestions .list-group-item a {
+    color: #333;
+    text-decoration: none;
+}
+
+#search-suggestions .list-group-item a:hover {
+    color: #000;
+}
+
+/* Responsive Cart Table */
+@media (max-width: 768px) {
+    .table-striped thead {
+        display: none;
+    }
+
+    .table-striped, .table-striped tbody, .table-striped tr, .table-striped td {
+        display: block;
+        width: 100%;
+    }
+
+    .table-striped tr {
+        margin-bottom: 15px;
+    }
+
+    .table-striped td {
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+    }
+
+    .table-striped td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+    .quantity-controls {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .quantity-controls .form-control {
+        width: 50px !important;
+    }
+
+    
+}
+
+@media (min-width: 769px) {
+    thead tr th:nth-child(2){
+        min-width: 8em;
+    }
+
+
+}
